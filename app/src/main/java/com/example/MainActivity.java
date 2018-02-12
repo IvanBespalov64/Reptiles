@@ -21,8 +21,13 @@ public class MainActivity extends AppCompatActivity {
     TextView info;
     ImageView img;
     long start,end;
-    final String[] arrInfo = {"Чесночница Обыкновенна","Гадюка Никольского","Гадюка Степная","Ящерица Прыткая","Ящурка Разноцветная","Жерлянка Краснобрюхая","Лягушка Озерная","Лягушка Травяная","Медянка Обыкновенная","Жаба Серая","Веретеница Ломкая","Уж Обыкновенная","Черепаха Болотная","Лягушка Отсромордая","Уж Водяной","Полоз Узорчатный"};
-  //  Integer[] tmp = {new Random().nextInt(arrInfo.length),new Random().nextInt(arrInfo.length),new Random().nextInt(arrInfo.length),new Random().nextInt(arrInfo.length),new Random().nextInt(arrInfo.length)};
+    /*final int[] imglist = {R.drawable.chesn_obuk, R.drawable.gad_nick, R.drawable.gad_stepn, R.drawable.jash_prutk, R.drawable.jashk_razn, R.drawable.jerl_obuk, R.drawable.lyag_ozer, R.drawable.lyag_trav, R.drawable.med_ob, R.drawable.ser_jab, R.drawable.ver_lomk, R.drawable.yj_obuk,R.drawable.bol_cherep,R.drawable.lyag_ostromord,R.drawable.vod_yj,R.drawable.poloz_yzor};
+      final int[][] type = {{0,1,1,1,1,0,0,0,1,0,1,1,1,0,1,1},{0,1,1,1,1,0,0,0,1,0,1,1,1,0,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0}};
+      final String[] arrInfo = {"Чесночница Обыкновенна","Гадюка Никольского","Гадюка Степная","Ящерица Прыткая","Ящурка Разноцветная","Жерлянка Краснобрюхая","Лягушка Озерная","Лягушка Травяная","Медянка Обыкновенная","Жаба Серая","Веретеница Ломкая","Уж Обыкновенная","Черепаха Болотная","Лягушка Отсромордая","Уж Водяной","Полоз Узорчатный"};
+    */
+    final int[] imglist = {R.drawable.krasn_jerl,R.drawable.obyk_chesn,R.drawable.obyk_trit,R.drawable.ostr_lyag,R.drawable.oz_lyag,R.drawable.zel_jab};
+    final int[][] type = {{0,0,0,0,0,0},{0,0,0,0,0,0},{1,1,1,1,1,1},{1,1,1,0,0,1}};
+    final String[] arrInfo = {"Жерлянка Краснобрюхая","Чесночница Обыкновенная","Тритон Обыкновенный","Лягушка Остромордая","Лягушка Озерная","Жаба Зеленая"};
     int tmp[] = {0,1,2,3,4};
     Button next,back;
     @Override
@@ -44,12 +49,10 @@ public class MainActivity extends AppCompatActivity {
         index = -1;
         correct = 0;
         bad = 0;
-        final int[] imglist = {R.drawable.chesn_obuk, R.drawable.gad_nick, R.drawable.gad_stepn, R.drawable.jash_prutk, R.drawable.jashk_razn, R.drawable.jerl_obuk, R.drawable.lyag_ozer, R.drawable.lyag_trav, R.drawable.med_ob, R.drawable.ser_jab, R.drawable.ver_lomk, R.drawable.yj_obuk,R.drawable.bol_cherep,R.drawable.lyag_ostromord,R.drawable.vod_yj,R.drawable.poloz_yzor};
-        final int[][] type = {{0,1,1,1,1,0,0,0,1,0,1,1,1,0,1,1},{0,1,1,1,1,0,0,0,1,0,1,1,1,0,1,1},{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},{1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0}};
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        img = (ImageView) findViewById(R.id.imageView1);
+        img = (ImageView) findViewById(R.id.imageView);
         next = findViewById(R.id.button);
         back = findViewById(R.id.button2);
         info = findViewById(R.id.textView);
