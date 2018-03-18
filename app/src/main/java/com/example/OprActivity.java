@@ -17,8 +17,9 @@ public class OprActivity extends AppCompatActivity {
         Intent intent = new Intent(OprActivity.this, SelectActivity.class);
         startActivity(intent);
     }
-    Map<String,String[]> map = new HashMap<String,String[]>();
-    Map<String,Integer> imap = new HashMap<String,Integer>();
+    Map<String,String[]> map = new HashMap<String,String[]>(); // Contains triades of Questions and two answers
+    Map<String,Integer> imap = new HashMap<String,Integer>(); //Links for imgs
+    Set<String> sd = new HashSet<String>(); // Contains a res
 
 
     //Old
@@ -49,7 +50,7 @@ public class OprActivity extends AppCompatActivity {
     String tmp = "_";
     final int[] imglist = {R.drawable.krasn_jerl,R.drawable.obyk_chesn,R.drawable.obyk_trit,R.drawable.ostr_lyag,R.drawable.oz_lyag,R.drawable.zel_jab};
     TextView q;
-    Button ans1,ans2;
+    Button ans1,ans2,more;
     ImageView i;
 
     int f = 0;
@@ -65,7 +66,10 @@ public class OprActivity extends AppCompatActivity {
         q=(TextView)findViewById(R.id.question);
         ans1 = (Button)findViewById(R.id.ans1);
         ans2 = (Button)findViewById(R.id.ans2);
+        more = (Button)findViewById(R.id.button3);
         i = (ImageView)findViewById(R.id.imageView2);
+
+        more.setVisibility(View.INVISIBLE);
 
         q.setText(zemn[0][0][0]);
         ans1.setText(zemn[0][0][1]);
@@ -106,6 +110,48 @@ public class OprActivity extends AppCompatActivity {
         map.put("_111111", new String[]{"Это - Живородящая Ящерица","",""});
 
         imap.put("_", R.drawable._);
+        imap.put("_10",R.drawable._10);
+        imap.put("_11",R.drawable._11);
+        imap.put("_11000",R.drawable._11000);
+        imap.put("_11001",R.drawable._11001);
+        imap.put("_11011",R.drawable._11011);
+        imap.put("_110110",R.drawable._110110);
+        imap.put("_1101010",R.drawable._1101010);
+        imap.put("_1110",R.drawable._1110);
+        imap.put("_111110",R.drawable._111110);
+        imap.put("_111111",R.drawable._111111);
+        imap.put("_1101011",R.drawable._1101011);
+        imap.put("_011",R.drawable._011);
+        imap.put("_0111",R.drawable._0111);
+        imap.put("_01111",R.drawable._01111);
+        imap.put("_00",R.drawable._00);
+        imap.put("_011111",R.drawable._011111);
+        imap.put("_011110",R.drawable._011110);
+        imap.put("_010",R.drawable._010);
+        imap.put("_0110",R.drawable._0110);
+        imap.put("_01110",R.drawable._01110);
+        imap.put("_011110",R.drawable._011110);
+
+
+
+        sd.add("_00");
+        sd.add("_10");
+        sd.add("_010");
+        sd.add("_0110");
+        sd.add("_01110");
+        sd.add("_011110");
+        sd.add("_011111");
+        sd.add("_11000");
+        sd.add("_11001");
+        sd.add("_11011");
+        sd.add("_110100");
+        sd.add("_1101010");
+        sd.add("_1101011");
+        sd.add("_1110");
+        sd.add("_11110");
+        sd.add("_111110");
+        sd.add("_111111");
+
 
         i.setImageDrawable(getResources().getDrawable(imap.get(tmp)));
 
@@ -113,6 +159,12 @@ public class OprActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 tmp+="0";
+                if(sd.contains(tmp)){
+                    ans1.setVisibility(View.INVISIBLE);
+                    ans2.setVisibility(View.INVISIBLE);
+                    more.setVisibility(View.VISIBLE);
+                    msg(map.get(tmp)[0]);
+                }
                 if(imap.containsKey(tmp))
                 i.setImageDrawable(getResources().getDrawable(imap.get(tmp)));
                 else
@@ -146,6 +198,12 @@ public class OprActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
             tmp+="1";
+                if(sd.contains(tmp)){
+                    ans1.setVisibility(View.INVISIBLE);
+                    ans2.setVisibility(View.INVISIBLE);
+                    more.setVisibility(View.VISIBLE);
+                    msg(map.get(tmp)[0]);
+                }
                 if(imap.containsKey(tmp))
                     i.setImageDrawable(getResources().getDrawable(imap.get(tmp)));
                 else
