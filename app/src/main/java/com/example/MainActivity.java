@@ -30,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
     final String[] arrInfo = {"Жерлянка Краснобрюхая","Чесночница Обыкновенная","Тритон Обыкновенный","Лягушка Остромордая","Лягушка Озерная","Жаба Зеленая"};
     int tmp[] = {0,1,2,3,4};
     Button next,back;
+
+    public void onBackPressed() {
+        Intent intent = new Intent(MainActivity.this, SelectActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         /*ArrayList<Integer> list = new ArrayList<Integer>();

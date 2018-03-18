@@ -1,0 +1,218 @@
+package com.example;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.*;
+
+import java.util.*;
+
+public class OprActivity extends AppCompatActivity {
+
+    public void onBackPressed() {
+        Intent intent = new Intent(OprActivity.this, SelectActivity.class);
+        startActivity(intent);
+    }
+    Map<String,String[]> map = new HashMap<String,String[]>();
+
+
+   // String[] tree = {"Это:","Животное с голоой влажной кожей","Животное с сухой кожей, покрытой чешуйками","С хвосттом, две почти одинаковые пары конечностей","Без хвоста, задние конечности крупнее, поджаты к телу","","","Это - Тритон Обыкновенный","","Вертикальный зрачок","Зрачок не вертикальный"};
+    String[][][] rept = {{{"Животное:","Голая влажная кожа","Сухая кожа"},{"","",""},{"","",""}},
+           {{"Есть панцирь? ","Да","Нет"},                                {"Это - Болоотная Черепаха","",""},{"","",""}},
+           {{"Веки:","Неподвижные","Подвижные"},                          {"Рисунок из чередующихся"+"\n"+"черно-белых чешуек","Есть","Нет"}, {"Желтый рисунок на голове","Есть","Нет"},{"Это - Обыкновенный уж","",""}},
+           {{" "," "," "},                                                {"","",""},{"Это - Водяный уж","",""}}
+           };
+
+
+
+
+    String[][][] zemn = {{{"Животное:","Голая влажная кожа","Сухая кожа"},{"Какое оно?","С хвостом","Без хвоста"},{"Это - Тритон обыкновенный","",""}},
+                         {{" "," "," "},                                  {"Зрачки - вертикальные?","Да","Нет"},{"Это - Чессночница Обыкновенная","",""}},
+                         {{" "," "," "},                                  {"Зрачок - треугольный?","Да","Нет"}, {"Это - Жерлянка Краснобрюхая","",""}},
+                         {{" "," "," "},                                  {"Перепонки пратическ отсутствуют,"+"\n"+" нет зубов","Да","Нет"},{"Это - Зеленая жаба","",""}},
+                         {{" "," "," "},                                  {"Рисунок на брюхе:","Есть","Нет"},{"Это - Озерная лягушка","",""}},
+                         {{" "," "," "},                                  {"Это - Остромордая лягушка","",""},     {"","",""}}};
+    /*
+
+                                        Th<String,String,String>[][] zemn = {{new Th<String,String,String>().makePair("Животное:","Голая влажная кожа","Сухая кожа")},
+                                         {new Th<String,String,String>().makePair("Животное:","Голая влажная кожа","Сухая кожа")}};
+     */
+
+    String[][][] trg;
+    String tmp = "";
+    final int[] imglist = {R.drawable.krasn_jerl,R.drawable.obyk_chesn,R.drawable.obyk_trit,R.drawable.ostr_lyag,R.drawable.oz_lyag,R.drawable.zel_jab};
+    TextView q;
+    Button ans1,ans2;
+    ImageView i;
+
+    int f = 0;
+    int s = 0;
+    final Context context = this;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_opr);
+        q=(TextView)findViewById(R.id.question);
+        ans1 = (Button)findViewById(R.id.ans1);
+        ans2 = (Button)findViewById(R.id.ans2);
+        i = (ImageView)findViewById(R.id.imageView2);
+
+        q.setText(zemn[0][0][0]);
+        ans1.setText(zemn[0][0][1]);
+        ans2.setText(zemn[0][0][2]);
+
+        map.put("",new String[]{"Животное:","Голая влажная кожа","Сухая кожа"});
+        map.put("0",new String[]{"Какое оно?","С хвостом","Без хвоста"});
+        map.put("1",new String[]{"Есть панцирь? ","Да","Нет"});
+        map.put("00",new String[]{"Это - Тритон обыкновенный","",""});
+        map.put("01",new String[]{"Зрачки - вертикальные?","Да","Нет"});
+        map.put("10",new String[]{"Это - Болоотная Черепаха","",""});
+        map.put("11",new String[]{"Веки:","Неподвижные","Подвижные"});
+        map.put("010",new String[]{"Это - Чессночница Обыкновенная","",""});
+        map.put("011", new String[]{"Зрачок - треугольный?","Да","Нет"});
+        map.put("110", new String[]{"Рисунок из чередующихся"+"\n"+"черно-белых чешуек","Есть","Нет"});
+        map.put("111", new String[]{"Какая ящерица?","Вообще без ног","С двумя парами ног"});
+        map.put("0110", new String[]{"Это - Жерлянка Краснобрюхая","",""});
+        map.put("0111", new String[]{"Перепонки пратическ отсутствуют,"+"\n"+" нет зубов","Да","Нет"});
+        map.put("01110",new String[]{"Это - Зеленая жаба","",""});
+        map.put("01111", new String[]{"Рисунок на брюхе:","Есть","Нет"});
+        map.put("011110", new String[]{"Это - Озерная лягушка","",""});
+        map.put("011111",new String[] {"Это - Остромордая лягушка","",""});
+        map.put("1100", new String[]{"Желтый рисунок на голове","Есть","Нет"});
+        map.put("11000",new String[]{"Это - Обыкновенный уж","",""});
+        map.put("11001",new String[]{"Это - Водяный уж","",""});
+        map.put("1101", new String[]{"Черная?","Да","Нет"});
+        map.put("11011",new String[]{"Это - Гадюка Никольского","",""});
+        map.put("11010",new String[]{"Вдоль спины зигзагообразный узор из ромбов","Есть","Нет"});
+        map.put("110100",new String[]{"Это - Восточная Степная Гадюка","",""});
+        map.put("110101",new String[]{"Узор на голве","Есть","Нет"});
+        map.put("1101010",new String[]{"Это - Узорчатый Полоз","",""});
+        map.put("1101011", new String[]{"Это - Обыкновенная Медянка","",""});
+        map.put("1110", new String[]{"Это - Веретеница Ломкая","",""});
+        map.put("1111",new String[]{"Какая ящерица?","Чешуйки на брюхе"+"\n"+" расположены ёлочкой","Чешуйки на брюхе расположены"+"\n"+" параллельно"});
+        map.put("11110",new String[]{"Это - Разноцветная ящурка","",""});
+        map.put("11111",new String[]{"Хвост:","Короче тела","Длиннее тела"});
+        map.put("111110",new String[]{"Это - Прыткая Ящерица","",""});
+        map.put("111111", new String[]{"Это - Живородящая Ящерица","",""});
+
+
+
+        ans1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tmp+="0";
+                /*f++;
+                if(f==1&&s==0) trg=zemn;
+                q.setText(trg[s][f][0]);
+                ans1.setText(trg[s][f][1]);
+                ans2.setText(trg[s][f][2]);
+                if(((String)q.getText()).contains("Это - ")){
+                    int ind  = 0;
+                    if(f==2&&s==0) i.setImageDrawable(getResources().getDrawable(imglist[2]));;
+                    if(f==2&&s==1) i.setImageDrawable(getResources().getDrawable(imglist[1]));
+                    if(f==2&&s==2) i.setImageDrawable(getResources().getDrawable(imglist[0]));
+                    if(f==2&&s==3) i.setImageDrawable(getResources().getDrawable(imglist[5]));
+                    if(f==2&&s==4) i.setImageDrawable(getResources().getDrawable(imglist[4]));
+                    if(f==1&&s==5) i.setImageDrawable(getResources().getDrawable(imglist[3]));
+                    msg((String)q.getText());
+                    ans1.setVisibility(View.INVISIBLE);
+                    ans2.setVisibility(View.INVISIBLE);
+
+                }*/
+
+                q.setText(map.get(tmp)[0]);
+                ans1.setText(map.get(tmp)[1]);
+                ans2.setText(map.get(tmp)[2]);
+
+            }
+        });
+        ans2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            s++;
+            tmp+="1";
+                /*if(f==0&&s==1) trg=rept;
+                q.setText(trg[s][f][0]);
+                ans1.setText(trg[s][f][1]);
+                ans2.setText(trg[s][f][2]);
+                if(((String)q.getText()).contains("Это - ")){
+                    int ind  = 0;
+                    if(f==2&&s==0) i.setImageDrawable(getResources().getDrawable(imglist[2]));;
+                    if(f==2&&s==1) i.setImageDrawable(getResources().getDrawable(imglist[1]));
+                    if(f==2&&s==2) i.setImageDrawable(getResources().getDrawable(imglist[0]));
+                    if(f==2&&s==3) i.setImageDrawable(getResources().getDrawable(imglist[5]));
+                    if(f==2&&s==4) i.setImageDrawable(getResources().getDrawable(imglist[4]));
+                    if(f==1&&s==5) i.setImageDrawable(getResources().getDrawable(imglist[3]));
+                    msg((String)q.getText());
+                    ans1.setVisibility(View.INVISIBLE);
+                    ans2.setVisibility(View.INVISIBLE);
+                }
+*/
+                q.setText(map.get(tmp)[0]);
+                ans1.setText(map.get(tmp)[1]);
+                ans2.setText(map.get(tmp)[2]);
+            }
+        });
+
+
+    }
+    public void msg(String msg){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(msg);
+
+            builder.setPositiveButton("Вернуться в меню", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    //do things
+                    // start_of_game();
+                    Intent intent = new Intent(OprActivity.this, SelectActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            builder.setNegativeButton("Повторить", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    //do things
+                    Intent intent = new Intent(OprActivity.this, OprActivity.class);
+                    startActivity(intent);
+                    f=0;
+                    s=0;
+                }
+            });
+        builder.setNeutralButton("Остаться", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+
+
+            }
+        });
+
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+}
+/*class Th<F,S,T>{
+    public F quest;
+    public S first;
+    public T second;
+    public Th(F f,S s,T t){
+        quest = f;
+        first = s;
+        second = t;
+    }
+    public Th(){
+
+    }
+    public Th<F,S,T> makePair(F f,S s, T t){
+        return new Th<F,S,T>(f,s,t);
+    }
+
+}*/
