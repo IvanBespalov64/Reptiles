@@ -18,7 +18,10 @@ public class OprActivity extends AppCompatActivity {
         startActivity(intent);
     }
     Map<String,String[]> map = new HashMap<String,String[]>();
+    Map<String,Integer> imap = new HashMap<String,Integer>();
 
+
+    //Old
 
    // String[] tree = {"Это:","Животное с голоой влажной кожей","Животное с сухой кожей, покрытой чешуйками","С хвосттом, две почти одинаковые пары конечностей","Без хвоста, задние конечности крупнее, поджаты к телу","","","Это - Тритон Обыкновенный","","Вертикальный зрачок","Зрачок не вертикальный"};
     String[][][] rept = {{{"Животное:","Голая влажная кожа","Сухая кожа"},{"","",""},{"","",""}},
@@ -43,7 +46,7 @@ public class OprActivity extends AppCompatActivity {
      */
 
     String[][][] trg;
-    String tmp = "";
+    String tmp = "_";
     final int[] imglist = {R.drawable.krasn_jerl,R.drawable.obyk_chesn,R.drawable.obyk_trit,R.drawable.ostr_lyag,R.drawable.oz_lyag,R.drawable.zel_jab};
     TextView q;
     Button ans1,ans2;
@@ -67,48 +70,54 @@ public class OprActivity extends AppCompatActivity {
         q.setText(zemn[0][0][0]);
         ans1.setText(zemn[0][0][1]);
         ans2.setText(zemn[0][0][2]);
+        //New
+        map.put("_",new String[]{"Животное:","Голая влажная кожа","Сухая кожа"});
+        map.put("_0",new String[]{"Какое оно?","С хвостом","Без хвоста"});
+        map.put("_1",new String[]{"Есть панцирь? ","Да","Нет"});
+        map.put("_00",new String[]{"Это - Тритон обыкновенный","",""});
+        map.put("_01",new String[]{"Зрачки - вертикальные?","Да","Нет"});
+        map.put("_10",new String[]{"Это - Болоотная Черепаха","",""});
+        map.put("_11",new String[]{"Веки:","Неподвижные","Подвижные"});
+        map.put("_010",new String[]{"Это - Чессночница Обыкновенная","",""});
+        map.put("_011", new String[]{"Зрачок - треугольный?","Да","Нет"});
+        map.put("_110", new String[]{"Рисунок из чередующихся"+"\n"+"черно-белых чешуек","Есть","Нет"});
+        map.put("_111", new String[]{"Какая ящерица?","Вообще без ног","С двумя парами ног"});
+        map.put("_0110", new String[]{"Это - Жерлянка Краснобрюхая","",""});
+        map.put("_0111", new String[]{"Перепонки пратическ отсутствуют,"+"\n"+" нет зубов","Да","Нет"});
+        map.put("_01110",new String[]{"Это - Зеленая жаба","",""});
+        map.put("_01111", new String[]{"Рисунок на брюхе:","Есть","Нет"});
+        map.put("_011110", new String[]{"Это - Озерная лягушка","",""});
+        map.put("_011111",new String[] {"Это - Остромордая лягушка","",""});
+        map.put("_1100", new String[]{"Желтый рисунок на голове","Есть","Нет"});
+        map.put("_11000",new String[]{"Это - Обыкновенный уж","",""});
+        map.put("_11001",new String[]{"Это - Водяный уж","",""});
+        map.put("_1101", new String[]{"Черная?","Да","Нет"});
+        map.put("_11011",new String[]{"Это - Гадюка Никольского","",""});
+        map.put("_11010",new String[]{"Вдоль спины зигзагообразный узор из ромбов","Есть","Нет"});
+        map.put("_110100",new String[]{"Это - Восточная Степная Гадюка","",""});
+        map.put("_110101",new String[]{"Узор на голве","Есть","Нет"});
+        map.put("_1101010",new String[]{"Это - Узорчатый Полоз","",""});
+        map.put("_1101011", new String[]{"Это - Обыкновенная Медянка","",""});
+        map.put("_1110", new String[]{"Это - Веретеница Ломкая","",""});
+        map.put("_1111",new String[]{"Какая ящерица?","Чешуйки на брюхе"+"\n"+" расположены ёлочкой","Чешуйки на брюхе расположены"+"\n"+" параллельно"});
+        map.put("_11110",new String[]{"Это - Разноцветная ящурка","",""});
+        map.put("_11111",new String[]{"Хвост:","Короче тела","Длиннее тела"});
+        map.put("_111110",new String[]{"Это - Прыткая Ящерица","",""});
+        map.put("_111111", new String[]{"Это - Живородящая Ящерица","",""});
 
-        map.put("",new String[]{"Животное:","Голая влажная кожа","Сухая кожа"});
-        map.put("0",new String[]{"Какое оно?","С хвостом","Без хвоста"});
-        map.put("1",new String[]{"Есть панцирь? ","Да","Нет"});
-        map.put("00",new String[]{"Это - Тритон обыкновенный","",""});
-        map.put("01",new String[]{"Зрачки - вертикальные?","Да","Нет"});
-        map.put("10",new String[]{"Это - Болоотная Черепаха","",""});
-        map.put("11",new String[]{"Веки:","Неподвижные","Подвижные"});
-        map.put("010",new String[]{"Это - Чессночница Обыкновенная","",""});
-        map.put("011", new String[]{"Зрачок - треугольный?","Да","Нет"});
-        map.put("110", new String[]{"Рисунок из чередующихся"+"\n"+"черно-белых чешуек","Есть","Нет"});
-        map.put("111", new String[]{"Какая ящерица?","Вообще без ног","С двумя парами ног"});
-        map.put("0110", new String[]{"Это - Жерлянка Краснобрюхая","",""});
-        map.put("0111", new String[]{"Перепонки пратическ отсутствуют,"+"\n"+" нет зубов","Да","Нет"});
-        map.put("01110",new String[]{"Это - Зеленая жаба","",""});
-        map.put("01111", new String[]{"Рисунок на брюхе:","Есть","Нет"});
-        map.put("011110", new String[]{"Это - Озерная лягушка","",""});
-        map.put("011111",new String[] {"Это - Остромордая лягушка","",""});
-        map.put("1100", new String[]{"Желтый рисунок на голове","Есть","Нет"});
-        map.put("11000",new String[]{"Это - Обыкновенный уж","",""});
-        map.put("11001",new String[]{"Это - Водяный уж","",""});
-        map.put("1101", new String[]{"Черная?","Да","Нет"});
-        map.put("11011",new String[]{"Это - Гадюка Никольского","",""});
-        map.put("11010",new String[]{"Вдоль спины зигзагообразный узор из ромбов","Есть","Нет"});
-        map.put("110100",new String[]{"Это - Восточная Степная Гадюка","",""});
-        map.put("110101",new String[]{"Узор на голве","Есть","Нет"});
-        map.put("1101010",new String[]{"Это - Узорчатый Полоз","",""});
-        map.put("1101011", new String[]{"Это - Обыкновенная Медянка","",""});
-        map.put("1110", new String[]{"Это - Веретеница Ломкая","",""});
-        map.put("1111",new String[]{"Какая ящерица?","Чешуйки на брюхе"+"\n"+" расположены ёлочкой","Чешуйки на брюхе расположены"+"\n"+" параллельно"});
-        map.put("11110",new String[]{"Это - Разноцветная ящурка","",""});
-        map.put("11111",new String[]{"Хвост:","Короче тела","Длиннее тела"});
-        map.put("111110",new String[]{"Это - Прыткая Ящерица","",""});
-        map.put("111111", new String[]{"Это - Живородящая Ящерица","",""});
+        imap.put("_", R.drawable._);
 
-
+        i.setImageDrawable(getResources().getDrawable(imap.get(tmp)));
 
         ans1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 tmp+="0";
-                /*f++;
+                if(imap.containsKey(tmp))
+                i.setImageDrawable(getResources().getDrawable(imap.get(tmp)));
+                else
+                    i.setImageDrawable(getResources().getDrawable(R.drawable.n));
+                /*
                 if(f==1&&s==0) trg=zemn;
                 q.setText(trg[s][f][0]);
                 ans1.setText(trg[s][f][1]);
@@ -136,8 +145,11 @@ public class OprActivity extends AppCompatActivity {
         ans2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            s++;
             tmp+="1";
+                if(imap.containsKey(tmp))
+                    i.setImageDrawable(getResources().getDrawable(imap.get(tmp)));
+                else
+                    i.setImageDrawable(getResources().getDrawable(R.drawable.n));
                 /*if(f==0&&s==1) trg=rept;
                 q.setText(trg[s][f][0]);
                 ans1.setText(trg[s][f][1]);
