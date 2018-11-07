@@ -62,6 +62,10 @@ public class OprActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        SelectorDialog intro = new SelectorDialog();
+        intro.show(getSupportFragmentManager(), "Intro");
+
         setContentView(R.layout.activity_opr);
         q=(TextView)findViewById(R.id.question);
         ans1 = (Button)findViewById(R.id.ans1);
@@ -96,12 +100,12 @@ public class OprActivity extends AppCompatActivity {
         map.put("_11000",new String[]{"Это - Обыкновенный уж","",""});
         map.put("_11001",new String[]{"Это - Водяный уж","",""});
         map.put("_1101", new String[]{"Черная?","Да","Нет"});
-        map.put("_11011",new String[]{"Это - Гадюка Никольского","",""});
-        map.put("_11010",new String[]{"Вдоль спины зигзагообразный узор из ромбов","Есть","Нет"});
-        map.put("_110100",new String[]{"Это - Восточная Степная Гадюка","",""});
-        map.put("_110101",new String[]{"Узор на голве","Есть","Нет"});
-        map.put("_1101010",new String[]{"Это - Узорчатый Полоз","",""});
-        map.put("_1101011", new String[]{"Это - Обыкновенная Медянка","",""});
+        map.put("_11010",new String[]{"Это - Гадюка Никольского","",""});
+        map.put("_11011",new String[]{"Вдоль спины зигзагообразный"+"\n"+" узор из ромбов","Есть","Нет"});
+        map.put("_110110",new String[]{"Это - Степная Гадюка","",""});
+        map.put("_110111",new String[]{"Узор на голве","Есть","Нет"});
+        map.put("_1101110",new String[]{"Это - Узорчатый Полоз","",""});
+        map.put("_1101111", new String[]{"Это - Обыкновенная Медянка","",""});
         map.put("_1110", new String[]{"Это - Веретеница Ломкая","",""});
         map.put("_1111",new String[]{"Какая ящерица?","Чешуйки на брюхе"+"\n"+" расположены ёлочкой","Чешуйки на брюхе расположены"+"\n"+" параллельно"});
         map.put("_11110",new String[]{"Это - Разноцветная ящурка","",""});
@@ -114,13 +118,13 @@ public class OprActivity extends AppCompatActivity {
         imap.put("_11",R.drawable._11);
         imap.put("_11000",R.drawable._11000);
         imap.put("_11001",R.drawable._11001);
-        imap.put("_11011",R.drawable._11011);
+        imap.put("_11010",R.drawable._11010);
         imap.put("_110110",R.drawable._110110);
-        imap.put("_1101010",R.drawable._1101010);
+        imap.put("_1101110",R.drawable._1101110);
         imap.put("_1110",R.drawable._1110);
         imap.put("_111110",R.drawable._111110);
         imap.put("_111111",R.drawable._111111);
-        imap.put("_1101011",R.drawable._1101011);
+        imap.put("_1101111",R.drawable._1101111);
         imap.put("_011",R.drawable._011);
         imap.put("_0111",R.drawable._0111);
         imap.put("_01111",R.drawable._01111);
@@ -143,10 +147,10 @@ public class OprActivity extends AppCompatActivity {
         sd.add("_011111");
         sd.add("_11000");
         sd.add("_11001");
-        sd.add("_11011");
-        sd.add("_110100");
-        sd.add("_1101010");
-        sd.add("_1101011");
+        sd.add("_11010");
+        sd.add("_110110");
+        sd.add("_1101110");
+        sd.add("_1101111");
         sd.add("_1110");
         sd.add("_11110");
         sd.add("_111110");

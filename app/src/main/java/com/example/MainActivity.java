@@ -2,6 +2,7 @@ package com.example;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.*;
 import android.widget.*;
 import android.content.*;
@@ -27,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     */
     final int[] imglist = {R.drawable.krasn_jerl,R.drawable.obyk_chesn,R.drawable.obyk_trit,R.drawable.ostr_lyag,R.drawable.oz_lyag,R.drawable.zel_jab,R.drawable.ser_jab,R.drawable.pal_pol};
     final int[][] type = {{0,0,0,0,0,0,0,1},{0,0,0,0,0,0,0,1},{1,1,1,1,1,1,0,0},{1,1,1,0,0,1,0,0}};
-    final String[] arrInfo = {"Жерлянка Краснобрюхая","Чесночница Обыкновенная","Тритон Обыкновенный","Лягушка Остромордая","Лягушка Озерная","Жаба Зеленая","Серая Жаба","Палласов Полоз"};
+    final String[] arrInfodef = {"жерлянка краснобрюхая","чесночница обыкновенная","тритон обыкновенный","лягушка остромордая","лягушка озерная","жаба зеленая"};
+    final String[] arrInfo = {"жерлянка краснобрюхая","чесночница обыкновенная","тритон обыкновенный","лягушка остромордая","лягушка озерная","жаба зеленая","серая жаба","палласов полоз"};
     int tmp[] = {0,1,2,3,4};
     Button next,back;
 
@@ -47,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
            tmp[i]=list.get(i);
         }*/
         level  = 1;
-        btn_txt.add(new Pair<String,String>().makePair("Пресмыкающееся (Рептилия)","Земноводное (Амфибия)"));
+        btn_txt.add(new Pair<String,String>().makePair("Это - Пресмыкающееся?","Это - Земноводное?"));
         btn_txt.add(btn_txt.get(0));
-        btn_txt.add(new Pair<String,String>().makePair("Обитает в Саратовской Области","\"Не Обитает в Саратовской Области\""));
+        btn_txt.add(new Pair<String,String>().makePair("Обитает в Сарат. Обл.","Не Обитает в Сарат. Обл."));
         btn_txt.add(new Pair<String,String>().makePair("Ядовитое","Неядовитое"));
         tmp=genUniq(arrInfo.length,NUM_OF_SPRITES);
         index = -1;
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
                     index++;
                 }
-                if(next.getText().equals("Пресмыкающееся (Рептилия)"))
+                if(next.getText().equals("Пресмыкающееся"))
                     level=1;
                 else if(next.getText().equals("Обитает в Саратовской Области"))
                     level = 3;
@@ -102,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     start = System.currentTimeMillis();
                     index++;
                 }
-                if(next.getText().equals("Пресмыкающееся (Рептилия)"))
+                if(next.getText().equals("Пресмыкающееся"))
                     level=1;
                 else if(next.getText().equals("Обитает в Саратовской Области"))
                     level = 3;
@@ -128,17 +130,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void start_of_game(){
-        level = select_lvl();
+        //level = select_lvl();
+        select_lvl();
+        Log.w("CUR_LEVEL", new Integer(level).toString());
         /*next.setText(btn_txt.get(level-1).first);
         back.setText(btn_txt.get(level-1).second);*/
-        if(level==2)
+        if(level == 2)
             info.setText("");
         index = 0;
         start = System.currentTimeMillis();
-        correct=0;
-        bad=0;
+        correct = 0;
+        bad = 0;
         end = 0;
-        tmp=genUniq(arrInfo.length,NUM_OF_SPRITES);
+        if(level == 3)
+            tmp = genUniq(arrInfo.length,NUM_OF_SPRITES);
+        else
+            tmp = genUniq(arrInfodef.length, NUM_OF_SPRITES);
        /* HashSet<Integer> set = new HashSet<>();
         for(int i = 0;i<NUM_OF_SPRITES;++i)
             set.add(new Random().nextInt(NUM_OF_SPRITES-1));
@@ -154,8 +161,22 @@ public class MainActivity extends AppCompatActivity {
     }
     boolean taped = false;
 
-    public  int select_lvl(){
-        nl=4;
+    public  void select_lvl(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Выберите уровень сложности:")
+                .setItems(new String[] {"1 уровень", "2 уровень", "3 уровень", "4 уровень"}, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        level = which + 1;
+                        next.setText(btn_txt.get(level - 1).first);
+                        back.setText(btn_txt.get(level - 1).second);
+                        if(level != 1)
+                            info.setVisibility(View.INVISIBLE);
+                    }
+                });
+        AlertDialog cur_alert = builder.create();
+        cur_alert.show();
+        //return nl;
+        /*nl=4;
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Выберите уровень сложности. Чтобы выбрать первый уровень, нажмите на пустое пространство");
         builder.setPositiveButton("2 уровень", new DialogInterface.OnClickListener() {
@@ -205,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
         // msg(0,Integer.toString(level));
         AlertDialog alert = builder.create();
         alert.show();
-        return nl;
+        return nl;*/
     }
     public void end_of_game(double time, int score, int lose){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -213,9 +234,12 @@ public class MainActivity extends AppCompatActivity {
             builder.setMessage("Игра окончена!"+"\n"+"У вас "+score+" правильных ответов, и вы справились за "+time+" секунд. "+"\n"+"Просто замечательно!");
             else
         if(score>1)
-        builder.setMessage("Игра оканчена!"+"\n"+"У вас "+score+" правильных ответов, и вы справились за "+time+" секунд. "+"\n"+"Неплохо!");
+        builder.setMessage("Игра окончена!"+"\n"+"У вас "+score+" правильных ответа, и вы справились за "+time+" секунд. "+"\n"+"Неплохо!");
         else
-            builder.setMessage("Игра оканчена!"+"\n"+"У вас "+score+" правильных ответ, и вы справились за "+time+" секунд. "+"\n"+"Можно и лучше!");
+            if(score==1)
+                builder.setMessage("Игра окончена!"+"\n"+"У вас "+score+" правильный ответ, и вы справились за "+time+" секунд. "+"\n"+"Можно и лучше!");
+        else
+            builder.setMessage("Игра окончена!"+"\n"+"У вас нет правильных ответов, и вы справились за "+time+" секунд. "+"\n"+"Можно и лучше!");
         builder.setPositiveButton("Повторить", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 //do things
@@ -230,6 +254,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 System.exit(0);
+            }
+        });
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                index = 0;
+                correct=0;
+                bad=0;
             }
         });
         AlertDialog alert = builder.create();
@@ -272,6 +304,7 @@ public class MainActivity extends AppCompatActivity {
         return res;
 
     }
+
     public int[] genUniq(int border,int length){
         int res[] = new int[length];
         ArrayList<Integer> list = new ArrayList<Integer>();
@@ -284,6 +317,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return res;
     }
+
     public void chngLvl(int nl){
         level=nl;
     }

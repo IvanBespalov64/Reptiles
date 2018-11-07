@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="levels">["1 уровень", "2 уровень", "3 уровень", "4 уровень"]</array>
+</resources>

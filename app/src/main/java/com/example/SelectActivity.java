@@ -13,6 +13,8 @@ public class SelectActivity extends AppCompatActivity {
 
     Button quiz,opr;
 
+    final Context context = this;
+
     public void onBackPressed() {
         System.exit(0);
     }

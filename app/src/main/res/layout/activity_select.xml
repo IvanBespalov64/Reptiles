@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.SelectActivity">
+    tools:context="com.example.SelectActivity"
+    android:background="@drawable/back">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,30 +15,84 @@
             android:id="@+id/quiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="235dp"
-            android:text="Тест-игра" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView3"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/button_back"
+            android:text="Тест-игра"
+            android:textSize="16dp" />
 
         <Button
             android:id="@+id/opr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/quiz"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="44dp"
-            android:text="Определитель" />
+            android:layout_above="@+id/imageView4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="19dp"
+            android:background="@drawable/button_back"
+            android:text="Определитель"
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_above="@+id/opr"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="37dp"
-            android:textStyle="bold"
-            android:textSize="20sp"
+            android:layout_marginBottom="75dp"
             android:gravity="center"
-            android:text="Выберите режим:" />
+            android:text="Выберите режим:"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/info"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="43dp"
+            app:srcCompat="@drawable/main_page_ad" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/imageView3"
+            android:layout_alignEnd="@+id/textView3"
+            android:layout_alignRight="@+id/textView3"
+            android:text="Рептилии и амфибии" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/info"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="11dp"
+            android:text="Саратовской области" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="Приложение к мобильному телефону создано \n в рамках работы по проекту 'От идеи к делу' СРДОО \n 'Союз юных экологов Саратовской области' по \n гранту Президента Российской Федерации \n на развитие гражданского общества, \n предоставленному Фондом Президентских грантов." />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textView4"
+            android:layout_alignEnd="@+id/textView4"
+            android:layout_alignRight="@+id/textView4"
+            android:layout_marginBottom="17dp"
+            android:layout_marginEnd="52dp"
+            android:layout_marginRight="52dp"
+            app:srcCompat="@drawable/logo_eco" />
 
 
     </RelativeLayout>

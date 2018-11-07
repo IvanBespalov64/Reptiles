@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back"
     tools:context="com.example.MainActivity">
 
 
@@ -15,6 +16,7 @@
 
         <ImageView
             android:id="@+id/imageView"
+            android:textSize="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/button"
@@ -24,21 +26,25 @@
 
         <Button
             android:id="@+id/button"
+            android:textSize="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/button2"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="6dp"
+            android:background="@drawable/button_back"
             android:text="" />
 
         <Button
             android:id="@+id/button2"
+            android:textSize="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/button"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/button"
             android:layout_marginBottom="35dp"
+            android:background="@drawable/button_back"
             android:text="" />
 
         <TextView
