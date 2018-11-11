@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_l"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".SelectActivity"
             android:label="Рептилии"
@@ -22,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OprActivity"></activity>
+        <activity android:name=".OprActivity" />
+        <activity android:name=".MoreActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\Users\\User\\Desktop\\rl\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_l.png",
+        "source": "C:\\Users\\User\\Desktop\\rl\\app\\src\\main\\res\\mipmap-hdpi\\ic_l.png"
+    },
+    {
+        "merged": "D:\\rl\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
+        "source": "D:\\rl\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\Desktop\\rl\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\User\\Desktop\\rl\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\rl\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_l.png",
+        "source": "D:\\rl\\app\\src\\main\\res\\mipmap-hdpi\\ic_l.png"
+    },
+    {
+        "merged": "D:\\rl\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher_round.png",
+        "source": "D:\\rl\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\Desktop\\rl\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher_round.png",
+        "source": "C:\\Users\\User\\Desktop\\rl\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    }
+]

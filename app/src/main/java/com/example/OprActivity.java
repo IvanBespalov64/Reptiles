@@ -75,18 +75,15 @@ public class OprActivity extends AppCompatActivity {
 
         more.setVisibility(View.INVISIBLE);
 
-        q.setText(zemn[0][0][0]);
-        ans1.setText(zemn[0][0][1]);
-        ans2.setText(zemn[0][0][2]);
         //New
-        map.put("_",new String[]{"Животное:","Голая влажная кожа","Сухая кожа"});
-        map.put("_0",new String[]{"Какое оно?","С хвостом","Без хвоста"});
+        map.put("_",new String[]{"Животное:","Голая влажная кожа \n класс Земноводные(Amphibia)","Сухая кожа \n класс Пресмыкающиеся(Reptilia)" });
+        map.put("_0",new String[]{"Наличие хвоста:","Есть","Нет"});
         map.put("_1",new String[]{"Есть панцирь? ","Да","Нет"});
         map.put("_00",new String[]{"Это - Тритон обыкновенный","",""});
         map.put("_01",new String[]{"Зрачки - вертикальные?","Да","Нет"});
         map.put("_10",new String[]{"Это - Болоотная Черепаха","",""});
         map.put("_11",new String[]{"Веки:","Неподвижные","Подвижные"});
-        map.put("_010",new String[]{"Это - Чессночница Обыкновенная","",""});
+        map.put("_010",new String[]{"Это - Чесночница Обыкновенная","",""});
         map.put("_011", new String[]{"Зрачок - треугольный?","Да","Нет"});
         map.put("_110", new String[]{"Рисунок из чередующихся"+"\n"+"черно-белых чешуек","Есть","Нет"});
         map.put("_111", new String[]{"Какая ящерица?","Вообще без ног","С двумя парами ног"});
@@ -114,8 +111,10 @@ public class OprActivity extends AppCompatActivity {
         map.put("_111111", new String[]{"Это - Живородящая Ящерица","",""});
 
         imap.put("_", R.drawable._);
+        imap.put("_0", R.drawable._0);
         imap.put("_10",R.drawable._10);
         imap.put("_11",R.drawable._11);
+        imap.put("_11110", R.drawable._11110);
         imap.put("_11000",R.drawable._11000);
         imap.put("_11001",R.drawable._11001);
         imap.put("_11010",R.drawable._11010);
@@ -155,6 +154,10 @@ public class OprActivity extends AppCompatActivity {
         sd.add("_11110");
         sd.add("_111110");
         sd.add("_111111");
+
+        q.setText(map.get("_")[0]);
+        ans1.setText(map.get("_")[1]);
+        ans2.setText(map.get("_")[2]);
 
 
         i.setImageDrawable(getResources().getDrawable(imap.get(tmp)));
@@ -234,7 +237,14 @@ public class OprActivity extends AppCompatActivity {
                 ans2.setText(map.get(tmp)[2]);
             }
         });
-
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(OprActivity.this, MoreActivity.class);
+                intent.putExtra("EXTRA", q.getText());
+                startActivity(intent);
+            }
+        });
 
     }
     public void msg(String msg){
